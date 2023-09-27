@@ -1,4 +1,4 @@
-// - DRUM BUTTON START - //
+// - DRUM CLICK START - //
 
 var drumButton = document.querySelectorAll(".drum");
 for(let i = 0; i < drumButton.length; i++){
@@ -7,6 +7,7 @@ for(let i = 0; i < drumButton.length; i++){
 
 function play() {
     var buttonInnerHTML = this.innerHTML;
+    animatedButton(buttonInnerHTML);
     switch (buttonInnerHTML) {
         case "w":
             var crash = new Audio("./sounds/crash.mp3");
@@ -42,12 +43,13 @@ function play() {
     
 }
 
-// - DRUM BUTTON END - //
+// - DRUM CLICK END - //
 
 // - DRUM KEY START - //
 
 document.addEventListener("keydown", function(event){
     var key = event.key;
+    animatedButton(event.key)
     switch(key){
         case "w":
             var crash = new Audio("./sounds/crash.mp3");
@@ -84,6 +86,19 @@ document.addEventListener("keydown", function(event){
 
 // - DRUM KEY END - //
 
+// - DRUM ANIMATION START - //
+
+function animatedButton(currentKey){
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
+
+
+
+// - DRUM ANIMATION END - //
 
 /*
 
